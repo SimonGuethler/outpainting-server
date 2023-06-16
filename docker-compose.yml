@@ -1,0 +1,11 @@
+version: "3"
+name: stsiguet
+
+services:
+  outpainting-server:
+    build: .
+    ports:
+      - "8888:8888"
+    container_name: stsiguet-outpainting-server
+    volumes:
+      - ./public:/app/public
