@@ -10,9 +10,6 @@ app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Server');
-});
 
 interface DBEntry {
     id: number;
@@ -61,4 +58,12 @@ app.get('/data/:folderName', (req, res) => {
 
         res.json(result);
     });
+});
+
+app.get('/folders', (req, res) => {
+    const publicDirectory = path.join(__dirname, '..', 'public');
+    const folders = fs.readdirSync(publicDirectory).filter((file) =>
+        fs.statSync(path.join(publicDirectory, file)).isDirectory()
+    );
+    res.json(folders);
 });
