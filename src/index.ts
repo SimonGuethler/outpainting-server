@@ -1,9 +1,11 @@
-import express, { Express, Request, Response } from 'express';
+import express, { Express } from 'express';
+import cors from 'cors';
 import { Database } from 'sqlite3';
 import * as path from 'path';
 import * as fs from 'fs';
 
 const app: Express = express();
+app.use(cors());
 const port = 8888;
 
 app.listen(port, () => {
