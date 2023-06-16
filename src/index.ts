@@ -64,8 +64,10 @@ app.get('/data/:folderName', (req, res) => {
 
 app.get('/folders', (req, res) => {
     const publicDirectory = path.join(__dirname, '..', 'public');
-    const folders = fs.readdirSync(publicDirectory).filter((file) =>
-        fs.statSync(path.join(publicDirectory, file)).isDirectory()
-    );
+    const folders = fs.readdirSync(publicDirectory).filter((folder) => {
+        const folderPath = path.join(publicDirectory, folder);
+        const files = fs.readdirSync(folderPath);
+        return files.some((file) => file.endsWith('.webp')) && files.includes('sqlite.db');
+    });
     res.json(folders);
 });
