@@ -1,11 +1,13 @@
 import express, { Express } from 'express';
 import cors from 'cors';
+import compression from 'compression';
 import { Database } from 'sqlite3';
 import * as path from 'path';
 import * as fs from 'fs';
 
 const app: Express = express();
 app.use(cors());
+app.use(compression())
 const port = 8888;
 
 app.listen(port, () => {
