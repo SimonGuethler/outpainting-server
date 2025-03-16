@@ -1,11 +1,11 @@
-version: "3"
-name: stsiguet
-
 services:
   outpainting-server:
-    build: .
+    container_name: outpainting-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: registry.guethler.dev/outpainting-server:latest
     ports:
       - "8888:8888"
-    container_name: stsiguet-outpainting-server
     volumes:
       - ./public:/app/public
